@@ -1,3 +1,74 @@
+:root {
+  --primary-color: #3e46e9;
+  --secondary-color: #464d77;
+
+  --light-color: #f4eded;
+  --dark-color: #877666;
+
+  --green-color: #36827f;
+
+  --onyx: #404447ff;
+  --gunmetal: #343b43ff;
+  --gunmetal-2: #2d3236ff;
+  --eerie-black: #1a1e23ff;
+  --satin-sheen-gold: #be9536ff;
+
+  --onyx: #33363fff;
+  --eerie-black: #171616ff;
+  --onyx-2: #403f44ff;
+  --chinese-violet: #795b76ff;
+  --lilac: #c39abcff;
+
+  --copper: #bd7331ff;
+  --saddle-brown: #985528ff;
+  --mandarin: #e9743fff;
+  --gold-crayola: #ecbc78ff;
+  --cinnabar: #f03729ff;
+  /* width */
+  --max-width: 1100px;
+
+  /* Fonts */
+  --roboto: 'Roboto', sans-serif;
+  --montserrat: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #777;
+  font-family: var(--roboto);
+  line-height: 1.5;
+  background-color: var(--onyx);
+}
+
+a {
+  color: var(--lilac);
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--montserrat);
+  color: var(--gold-crayola);
+}
+
+/* Nav */
+.logo {
+  width: 15rem;
+  height: 15rem;
 }
