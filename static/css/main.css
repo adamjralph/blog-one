@@ -85,19 +85,37 @@ h6 {
 .category {
   display: inline-block;
   color: var(--light-color);
-  font-size: 0.8em;
+  font-size: 0.6em;
   text-transform: uppercase;
   padding: 0.4em 0.6em;
   border-radius: 15px;
   margin-bottom: 0.5em;
 }
 
-.category-bitcoin {background-color: var(--gunmetal);}
-.category-ethereum {background-color: var(--gunmetal);}
-.category-ic {background-color: var(--gunmetal);}
-.category-nft {background-color: var(--gunmetal);}
-.category-defi {background-color: var(--gunmetal);}
-.category-security {background-color: var(--gunmetal);}
+.category-bitcoin {
+  background-color: var(--eerie-black);
+}
+.category-web3 {
+  background-color: var(--eerie-black);
+}
+.category-ethereum {
+  background-color: var(--eerie-black);
+}
+.category-ic {
+  background-color: var(--eerie-black);
+}
+.category-nft {
+  background-color: var(--eerie-black);
+}
+.category-defi {
+  background-color: var(--eerie-black);
+}
+.category-security {
+  background-color: var(--eerie-black);
+}
+.category-shiba {
+  background-color: var(--eerie-black);
+}
 
 .btn {
   display: inline-block;
@@ -107,13 +125,26 @@ h6 {
   padding: 0.5em 1.5em;
 }
 
-.btn-light { background-color: var(--gold-crayola);}
-.btn-primary { background-color: var(--eerie-black);}
-.btn-secondary { background-color: var(--chinese-violet);}
+.btn-light {
+  background-color: var(--gold-crayola);
+}
+.btn-primary {
+  background-color: var(--eerie-black);
+}
+.btn-secondary {
+  background-color: var(--chinese-violet);
+}
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
   transition: color 0.8s ease;
   color: var(--mandarin);
+}
+
+.card {
+  background-color: var(--onyx);
+  padding: 1rem;
+  border-radius: 3px;
 }
 
 /* Nav */
@@ -193,11 +224,27 @@ nav ul li a:hover {
   z-index: 1;
 }
 
-.showcase .showcase-content h1, p {
-  margin-bottom: 1rem; 
+.showcase .showcase-content h1,
+p {
+  margin-bottom: 1rem;
 }
 
+/* Home Articles */
+#home-articles .articles-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
 
-.showcase .showcase-content {
+#home-articles .articles-container > *:first-child,
+#home-articles .articles-container > *:last-child {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  align-items: center;
+  grid-column: 1 / span 2;
+}
 
-
+#home-articles .articles-container > *:last-child {
+  grid-column: 2 / span 2;
+}
