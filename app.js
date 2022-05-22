@@ -15,8 +15,14 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+// Articles display
 app.get('/articles', (req, res) => {
   res.render('articles')
+})
+
+// Individual article
+app.get('/read', (req, res) => {
+  res.render('read')
 })
 
 app.get('/about', (req, res) => {
