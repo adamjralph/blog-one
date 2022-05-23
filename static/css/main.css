@@ -21,6 +21,7 @@
 
   --copper: #bd7331ff;
   --saddle-brown: #985528ff;
+  --saddle-brown-comp: #334499;
   --mandarin: #e9743fff;
   --gold-crayola: #ecbc78ff;
   --cinnabar: #f03729ff;
@@ -154,9 +155,19 @@ h6 {
   opacity: 1;
 }
 
+.bg-dark-category {
+  background-color: var(--saddle-brown);
+  color: #fff;
+}
+
 .bg-dark {
   background-color: var(--eerie-black);
   color: #fff;
+}
+.bg-dark h1,
+.bg-dark h2,
+.bg-dark h3 {
+  color: var(--gold-crayola);
 }
 
 .bg-primary {
@@ -167,6 +178,21 @@ h6 {
 .bg-secondary {
   background-color: var(--saddle-brown);
   color: #fff;
+}
+
+/* .bg-dark p,
+.bg-primary h1,
+.bg-primary h2,
+.bg-primary h3,
+.bg-primary a,
+.bg-primary p, */
+.bg-secondary h1,
+.bg-secondary h2,
+.bg-secondary h3,
+.bg-secondary a,
+.bg-secondary p {
+  color: var(--light-color);
+  filter: drop-shadow(0 0 0.01rem black);
 }
 
 .py-1 {
@@ -275,10 +301,10 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--chinese-violet);
-  background-image: url(../images/shubham-dhage-background-3-unsplash.jpg);
+  background-color: var(--eerie-black);
+  background-image: url(../images/shubham-dhage-background-5-unsplash.jpg);
   background-repeat: no-repeat;
-  background-blend-mode: color-dodge;
+  background-blend-mode: soft-light;
 }
 
 .articles-background-container {
