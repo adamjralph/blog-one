@@ -160,6 +160,11 @@ h6 {
   color: #fff;
 }
 
+.bg-light-category {
+  background-color: var(--eerie-black);
+  color: #fff;
+}
+
 .bg-dark {
   background-color: var(--eerie-black);
   color: #fff;
