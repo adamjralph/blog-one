@@ -142,9 +142,50 @@ h6 {
 }
 
 .card {
-  background-color: var(--onyx);
+  background-color: var(--gunmetal-2);
+  opacity: 0.8;
   padding: 1rem;
   border-radius: 3px;
+}
+
+.card:hover,
+.card:focus {
+  transition: opacity 0.6s ease;
+  opacity: 1;
+}
+
+.bg-dark {
+  background-color: var(--eerie-black);
+  color: #fff;
+}
+
+.bg-primary {
+  background-color: var(--gunmetal);
+  color: #fff;
+}
+
+.bg-secondary {
+  background-color: var(--saddle-brown);
+  color: #fff;
+}
+
+.py-1 {
+  padding: 1.5rem 0;
+}
+.py-2 {
+  padding: 2rem 0;
+}
+.py-3 {
+  padding: 3rem 0;
+}
+.p-1 {
+  padding: 1.5rem;
+}
+.p-3 {
+  padding: 2rem;
+}
+.p-3 {
+  padding: 3rem;
 }
 
 /* Nav */
@@ -230,14 +271,37 @@ p {
 }
 
 /* Home Articles */
-#home-articles .articles-container {
+#home-articles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--chinese-violet);
+  background-image: url(../images/shubham-dhage-background-3-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-blend-mode: color-dodge;
+}
+
+.articles-background-container {
+  width: auto;
+  margin: auto;
+  padding: 0 2rem;
+  overflow: hidden;
+}
+
+.articles-background-container h2 {
+  padding: 0rem 1rem;
+}
+
+.home-articles .articles-container {
+  max-width: var(--max-width);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
+  padding: 1rem;
 }
 
-#home-articles .articles-container > *:first-child,
-#home-articles .articles-container > *:last-child {
+.home-articles .articles-container > *:first-child,
+.home-articles .articles-container > *:last-child {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
@@ -245,6 +309,6 @@ p {
   grid-column: 1 / span 2;
 }
 
-#home-articles .articles-container > *:last-child {
+.home-articles .articles-container > *:last-child {
   grid-column: 2 / span 2;
 }
