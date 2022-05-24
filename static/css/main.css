@@ -60,7 +60,8 @@ img {
 
 p {
   color: var(--light-color);
-  font-weight: 600;
+  font-weight: 500;
+  margin: 0.5rem 0;
 }
 
 h1,
@@ -93,31 +94,6 @@ h6 {
   margin-bottom: 0.5em;
 }
 
-.category-bitcoin {
-  background-color: var(--eerie-black);
-}
-.category-web3 {
-  background-color: var(--eerie-black);
-}
-.category-ethereum {
-  background-color: var(--eerie-black);
-}
-.category-ic {
-  background-color: var(--eerie-black);
-}
-.category-nft {
-  background-color: var(--eerie-black);
-}
-.category-defi {
-  background-color: var(--eerie-black);
-}
-.category-security {
-  background-color: var(--eerie-black);
-}
-.category-shiba {
-  background-color: var(--eerie-black);
-}
-
 .btn {
   display: inline-block;
   border: 1px solid var(--gold-crayola);
@@ -140,6 +116,7 @@ h6 {
 .btn:focus {
   transition: color 0.8s ease;
   color: var(--mandarin);
+  border-color: var(--mandarin);
 }
 
 .card {
@@ -217,6 +194,16 @@ h6 {
 }
 .p-3 {
   padding: 3rem;
+}
+
+.list li {
+  padding: 0.4rem 0;
+  border-bottom: #555 dotted 1px;
+  width: 90%;
+}
+
+.list *:last-child {
+  border: none;
 }
 
 /* Nav */
@@ -342,4 +329,66 @@ p {
 
 .home-articles .articles-container > *:last-child {
   grid-column: 2 / span 2;
+}
+
+/* Footer */
+footer .main-footer {
+  background-color: var(--eerie-black);
+  color: #fff;
+}
+
+.main-footer img {
+  width: 150px;
+}
+
+.main-footer .footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.5rem;
+}
+
+.main-footer .footer-container > *:last-child {
+  grid-column: 1 / span 4;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.75;
+}
+
+.main-footer .footer-container input[type='email'] {
+  width: 90%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: lightgray;
+}
+
+.main-footer .footer-container input[type='submit'] {
+  width: 90%;
+}
+
+.main-footer .email-newsletter {
+  text-align: center;
+}
+
+.main-footer .site-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+}
+
+.main-footer .site-links ul li {
+  display: inline-block;
+}
+
+.main-footer .site-links a:hover,
+.main-footer .site-links a:focus {
+  transition: color 0.4s ease;
+  color: var(--mandarin);
+  border-color: var(--mandarin);
+}
+
+.main-footer .join-now {
+  text-align: right;
 }
