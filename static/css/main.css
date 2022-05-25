@@ -92,6 +92,9 @@ h6 {
   padding: 0.4em 0.6em;
   border-radius: 15px;
   margin-bottom: 0.5em;
+  /* To allow clickable through .span-link (z-index: 1) */
+  position: relative;
+  z-index: 2;
 }
 
 .btn {
@@ -100,6 +103,12 @@ h6 {
   background-color: var(--eerie-black);
   color: var(--gold-crayola);
   padding: 0.5em 1.5em;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 
 .btn-light {
@@ -118,6 +127,8 @@ h6 {
   color: var(--mandarin);
   border-color: var(--mandarin);
 }
+
+/* Card */
 
 .card {
   background-color: var(--gunmetal-2);
@@ -146,11 +157,6 @@ h6 {
   background-color: var(--eerie-black);
   color: #fff;
 }
-.bg-dark h1,
-.bg-dark h2,
-.bg-dark h3 {
-  color: var(--gold-crayola);
-}
 
 .bg-primary {
   background-color: var(--gunmetal);
@@ -162,6 +168,10 @@ h6 {
   color: #fff;
 }
 
+.bg-dark h1 .bg-dark h2,
+.bg-dark h3 {
+  color: var(--gold-crayola);
+}
 /* .bg-dark p,
 .bg-primary h1,
 .bg-primary h2,
@@ -211,6 +221,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 2;
+  transition: top 0.4s ease;
 }
 
 nav .nav-container {
@@ -311,6 +322,7 @@ p {
 }
 
 .home-articles .articles-container {
+  position: relative;
   max-width: var(--max-width);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -329,6 +341,20 @@ p {
 
 .home-articles .articles-container > *:last-child {
   grid-column: 2 / span 2;
+}
+
+.home-articles .articles-container .link-span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  z-index: 1;
+
+  /* fixes overlap error in IE7/8, 
+     make sure you have an empty gif */
+  background-image: url('empty.gif');
 }
 
 /* Footer */
@@ -391,4 +417,68 @@ footer .main-footer {
 
 .main-footer .join-now {
   text-align: right;
+}
+
+/* About */
+
+/* Inner page container */
+.page-container {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  margin: 2rem 0;
+  grid-gap: 1.5rem;
+}
+
+.page-container > *:first-child {
+  grid-row: 1 / span 3;
+}
+
+/* Article */
+
+.article-container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 0 2rem;
+  overflow: hidden;
+}
+
+.article-light {
+  display: grid;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.article-light p {
+  margin: auto;
+  max-width: 50ch;
+  color: #111;
+}
+
+.article .article-container .article-heading {
+  /* text-align: center; */
+  align-self: left;
+  display: inline;
+  max-width: 50ch;
+  /* padding: 2rem 0rem 2rem 2rem; */
+  /* line-height: normal; */
+  /* max-width: 50ch; */
+  padding: 2rem 0 2rem 3rem;
+  margin: auto;
+  color: #000;
+}
+
+.article-dark {
+  background-color: var(--gunmetal-2);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.article-dark p {
+  max-width: 50ch;
+  margin: auto;
+}
+
+.article-dark .l-heading {
+  text-align: center;
 }
