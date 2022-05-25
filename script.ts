@@ -42,23 +42,24 @@ main()
     await prisma.$disconnect();
   });
 
-// app.get('/', (req, res) => {
-//   res.render('index');
-// });
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
-// // Articles display
-// app.get('/articles', (req, res) => {
-//   res.render('articles');
-// });
+// Articles display
+app.get('/articles', (req, res) => {
+  res.render('articles');
+});
 
-// // Individual article
-// app.get('/read', (req, res) => {
-//   res.render('read');
-// });
+// Individual article
+app.get('/read', (req, res) => {
+  res.render('read');
+});
 
-// app.get('/about', (req, res) => {
-//   res.render('about');
-// });
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
 app.listen(3001, () => {
   console.log('Listening on port 3001');
 });
