@@ -51,6 +51,10 @@ a {
   text-decoration: none;
 }
 
+input {
+  font-family: var(--roboto);
+}
+
 ul {
   list-style: none;
 }
@@ -124,7 +128,7 @@ h6 {
 
 .btn:hover,
 .btn:focus {
-  transition: color 0.8s ease;
+  transition: color 3s ease-in-out;
   color: var(--mandarin);
   border-color: var(--mandarin);
 }
@@ -238,6 +242,7 @@ nav .nav-container {
 
 .nav-heading {
   letter-spacing: 0.2rem;
+  text-align: center;
 }
 
 nav ul {
@@ -261,6 +266,14 @@ nav ul li a:hover {
   color: var(--mandarin);
 }
 
+.showcase-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .showcase {
   color: var(--light-color);
   background: var(--eerie-black);
@@ -268,9 +281,9 @@ nav ul li a:hover {
   position: relative;
 }
 
-.showcase:after {
+.showcase::before {
   content: '';
-  background: url(../images/shubham-dhage-article-1-unsplash.jpg);
+  background: url(../images/shubham-dhage-article-1-unsplash.jpg) no-repeat center center/cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -279,13 +292,6 @@ nav ul li a:hover {
   opacity: 0.4;
 }
 
-.showcase-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
 
 .showcase .showcase-content {
   z-index: 1;
@@ -303,7 +309,6 @@ p {
   justify-content: center;
   background-color: var(--eerie-black);
   background-image: url(../images/shubham-dhage-background-5-unsplash.jpg);
-  background-repeat: no-repeat;
   background-blend-mode: soft-light;
 }
 
@@ -370,7 +375,7 @@ footer .main-footer {
   color: #fff;
 }
 
-.main-footer img {
+.main-footer .footer-logo {
   width: 150px;
 }
 
@@ -400,6 +405,10 @@ footer .main-footer {
 
 .main-footer .email-newsletter {
   text-align: center;
+}
+
+.main-footer .email-newsletter .subscribe-btn {
+  font-size: 1rem;
 }
 
 .main-footer .site-links .card:hover,
@@ -446,6 +455,8 @@ footer .main-footer {
 }
 
 /* Article */
+
+/* Read */
 
 /* .article-container {
   max-width: var(--max-width);
