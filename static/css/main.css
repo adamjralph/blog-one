@@ -89,7 +89,7 @@ h6 {
   color: var(--light-color);
   font-size: 0.6em;
   text-transform: uppercase;
-  padding: 0.4em 0.6em;
+  padding: 0.4em 0.8em;
   border-radius: 15px;
   margin-bottom: 0.5em;
   /* To allow clickable through .span-link (z-index: 1) */
@@ -436,43 +436,73 @@ footer .main-footer {
 
 /* Article */
 
-.article-container {
+/* .article-container {
   max-width: var(--max-width);
   margin: auto;
   padding: 0 2rem;
   overflow: hidden;
+} */
+
+.article-container {
+  max-width: var(--max-width);
+  /* margin: auto; */
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  margin: 2rem 0;
+  grid-gap: 0.5rem;
+}
+
+.article-container > *:first-child {
+  grid-row: 1 / span 3;
 }
 
 .article-light {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
-  padding: 1rem;
-  border-radius: 5px;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 3px;
 }
 
 .article-light p {
-  margin: auto;
+  /* margin: auto; */
   max-width: 50ch;
-  color: #111;
+  padding: none;
+  color: #000;
+  padding-top: 0.5rem;
 }
 
-.article .article-container .article-heading {
-  /* text-align: center; */
-  align-self: left;
-  display: inline;
+.article-container .article-heading {
   max-width: 50ch;
-  /* padding: 2rem 0rem 2rem 2rem; */
-  /* line-height: normal; */
-  /* max-width: 50ch; */
-  padding: 2rem 0 2rem 3rem;
-  margin: auto;
+  padding: 0.5rem 0;
   color: #000;
+}
+
+.article-container .article-meta {
+  display: flex;
+}
+
+.article-container .article-meta .category,
+.article-container .article-meta .article-author {
+  display: inline;
+  margin-right: 1rem;
+}
+
+.article-container .article-meta .article-author {
+  text-transform: uppercase;
+  color: var(--gold-crayola);
+  font-size: 0.6em;
+  background-color: var(--eerie-black);
+  padding: 0.4em 0.8em;
+  margin-bottom: 0.5em;
+  border-radius: 15px;
 }
 
 .article-dark {
   background-color: var(--gunmetal-2);
   padding: 1rem;
   border-radius: 5px;
+  position: relative;
 }
 
 .article-dark p {
@@ -482,4 +512,12 @@ footer .main-footer {
 
 .article-dark .l-heading {
   text-align: center;
+}
+
+/* Read aside */
+.card-aside {
+  background-color: var(--gunmetal-2);
+  opacity: 0.8;
+  padding: 1rem;
+  border-radius: 3px;
 }
