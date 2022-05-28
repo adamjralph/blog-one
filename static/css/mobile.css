@@ -1,3 +1,24 @@
-body {
-  background-color: lightblue;
+/* Navigation */
+#main-nav .nav-container {
+  margin-bottom: 1rem;
+}
+#main-nav .logo-triangle {
+  display: none;
+}
+
+#main-nav .nav-heading {
+  text-align: center;
+}
+#main-nav .social {
+  display: none;
+}
+
+#main-nav .nav-container {
+  grid-template-columns: 1fr;
+  grid-gap: 1.2rem;
+}
+
+#main-nav ul {
+  justify-self: center;
+  margin-bottom: 1rem;
 }

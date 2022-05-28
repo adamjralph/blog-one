@@ -12,5 +12,20 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "serve-favicon": "^2.5.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.md"
+      }
+    ],
+    "[markdown]": {
+      "editor.formatOnSave": false
+    },
+    "[html]": {
+      "editor.formatOnSave": false
+    }
   }
 }
