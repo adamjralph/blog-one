@@ -377,7 +377,7 @@ footer .main-footer {
 .main-footer .footer-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1.5rem;
+  grid-gap: 2rem;
 }
 
 .main-footer .footer-container > *:last-child {
@@ -407,17 +407,17 @@ footer .main-footer {
   transition: opacity 0.6s ease;
   opacity: 1;
 }
- {
+.main-footer .site-links {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   text-align: center;
   width: 90%;
 }
 
 .main-footer .site-links ul li {
   display: inline-block;
+  text-align: center;
 }
 
 .main-footer .site-links a:hover,
