@@ -27,6 +27,7 @@
   --cinnabar: #f03729ff;
   /* width */
   --max-width: 1100px;
+  --article-max-width: 800px;
 
   /* Fonts */
   --roboto: 'Roboto', sans-serif;
@@ -137,11 +138,11 @@ h6 {
   border-radius: 3px;
 }
 
-.card:hover,
+/* .card:hover,
 .card:focus {
   transition: opacity 0.6s ease;
   opacity: 1;
-}
+} */
 
 .bg-dark-category {
   background-color: var(--saddle-brown);
@@ -172,20 +173,15 @@ h6 {
 .bg-dark h3 {
   color: var(--gold-crayola);
 }
-/* .bg-dark p,
-.bg-primary h1,
-.bg-primary h2,
-.bg-primary h3,
-.bg-primary a,
-.bg-primary p, */
-.bg-secondary h1,
+
+/* .bg-secondary h1,
 .bg-secondary h2,
 .bg-secondary h3,
 .bg-secondary a,
 .bg-secondary p {
   color: var(--light-color);
   filter: drop-shadow(0 0 0.01rem black);
-}
+} */
 
 .py-1 {
   padding: 1.5rem 0;
@@ -344,7 +340,11 @@ p {
   grid-column: 2 / span 2;
 }
 
-.home-articles .articles-container .link-span {
+.article-card {
+  position: relative;
+}
+
+.article-card .link-span {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -356,6 +356,12 @@ p {
   /* fixes overlap error in IE7/8, 
      make sure you have an empty gif */
   background-image: url('empty.gif');
+}
+
+.article-card .link-span:hover,
+.article-card .link-span:focus {
+  border: 1px solid var(--gold-crayola);
+  transition: border 0.9s ease-in;
 }
 
 /* Footer */
@@ -396,7 +402,12 @@ footer .main-footer {
   text-align: center;
 }
 
-.main-footer .site-links {
+.main-footer .site-links .card:hover,
+.card:focus {
+  transition: opacity 0.6s ease;
+  opacity: 1;
+}
+ {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -445,7 +456,7 @@ footer .main-footer {
 
 .article-container {
   max-width: var(--max-width);
-  /* margin: auto; */
+  margin: auto;
   display: grid;
   grid-template-columns: 5fr 2fr;
   margin: 2rem 0;
