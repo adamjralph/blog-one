@@ -1,22 +1,36 @@
 const express = require('express')
+const res = require('express/lib/response')
 const { append } = require('express/lib/response')
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /listings.
-const recordRoutes = express.Router()
+const content = express.Router()
 
 // This will help us connect to the database
 const dbo = require('../db/db')
 
-recordRoutes.get('/posts', (req, res) => {
+content.get('/posts', (req, res) => {
   // res.send('Hello World')
   const db = dbo.getDb()
   const collection = db.collection('post')
-  collection.find({}).toArray(function (err, post) {
-    console.log(post)
-    res.render('posts', { post })
+  collection.find({}).toArray(async function (err, post) {
+    if (post) {
+      await res.render('posts', { post })
+    }
+    if (err) {
+      console.error('Unable to retrieve post')
+    }
   })
+})
+
+// Read post
+content.route('/read').get(async function (req, res) {
+  const db = dbo.getDb()
+  const collection = db.collection('post')
+  const post = collection.find({ _id: '6292e02d2062124bbc5962bb' })
+  await res.render('read', { post })
+  // console.log(post)
 })
 
 // recordRoutes.use(express.json())
@@ -51,7 +65,7 @@ recordRoutes.get('/posts', (req, res) => {
 // })
 
 // This section will help you create a new record.
-recordRoutes.route('/listings/recordSwipe').post(function (req, res) {
+content.route('/listings/recordSwipe').post(function (req, res) {
   const dbConnect = dbo.getDb()
   const matchDocument = {
     listing_id: req.body.id,
@@ -73,7 +87,7 @@ recordRoutes.route('/listings/recordSwipe').post(function (req, res) {
 })
 
 // This section will help you update a record by id.
-recordRoutes.route('/listings/updateLike').post(function (req, res) {
+content.route('/listings/updateLike').post(function (req, res) {
   const dbConnect = dbo.getDb()
   const listingQuery = { _id: req.body.id }
   const updates = {
@@ -96,7 +110,7 @@ recordRoutes.route('/listings/updateLike').post(function (req, res) {
 })
 
 // This section will help you delete a record.
-recordRoutes.route('/listings/delete/:id').delete((req, res) => {
+content.route('/listings/delete/:id').delete((req, res) => {
   const dbConnect = dbo.getDb()
   const listingQuery = { listing_id: req.body.id }
 
@@ -113,4 +127,4 @@ recordRoutes.route('/listings/delete/:id').delete((req, res) => {
     })
 })
 
-module.exports = recordRoutes
+module.exports = content
