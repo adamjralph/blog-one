@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
+const path = require('path')
 // const cors = require('cors')
 // get MongoDB driver connection
 const dbo = require('./db/db')
@@ -11,6 +12,9 @@ const app = express()
 // app.use(cors())
 app.use(express.json())
 app.use(require('./routes/content'))
+
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, '../views'))
 
 // Global error handling
 app.use(function (err, _req, res) {

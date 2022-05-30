@@ -1,4 +1,5 @@
 const express = require('express')
+const { append } = require('express/lib/response')
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -8,22 +9,46 @@ const recordRoutes = express.Router()
 // This will help us connect to the database
 const dbo = require('../db/db')
 
-// This section will help you get a list of all the records.
-recordRoutes.route('/listings').get(async function (_req, res) {
-  const dbConnect = dbo.getDb()
-
-  dbConnect
-    .collection('listingsAndReviews')
-    .find({})
-    .limit(50)
-    .toArray(function (err, result) {
-      if (err) {
-        res.status(400).send('Error fetching listings!')
-      } else {
-        res.json(result)
-      }
-    })
+recordRoutes.get('/posts', (req, res) => {
+  // res.send('Hello World')
+  const db = dbo.getDb()
+  const collection = db.collection('post')
+  collection.find({}).toArray(function (err, post) {
+    console.log(post)
+    res.render('posts', { post })
+  })
 })
+
+// recordRoutes.use(express.json())
+// recordRoutes.set('view engine', 'ejs')
+// recordRoutes.set('views', path.join(__dirname, '../../views'))
+
+// This section will help you get a list of all the records.
+// recordRoutes.route('/posts').get(async function (_req, res) {
+//   const dbConnect = dbo.getDb()
+
+//   const posts = await dbConnect.collection('post').find({}).toArray()
+//   console.log(posts[0].title)
+//   const post = posts[0]
+//   // res.json(posts)
+//   res.render('posts', posts)
+//   // res.send(posts[0].title)
+//   // dbConnect
+//   //   .collection('post')
+//   //   .find({})
+//   //   .limit(50)
+//   //   .toArray(function (err, result) {
+//   //     const { post } = result
+//   //     console.log(result)
+//   //     console.log({ post })
+//   //     if (err) {
+//   //       res.status(400).send('Error fetching listings!')
+//   //     } else {
+//   //       // res.send('hello world')
+//   //       res.render('posts', { post })
+//   //     }
+//   //   })
+// })
 
 // This section will help you create a new record.
 recordRoutes.route('/listings/recordSwipe').post(function (req, res) {
