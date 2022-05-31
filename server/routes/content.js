@@ -7,10 +7,12 @@ const express = require('express')
 // The router will be added as a middleware and will take control of requests starting with path /listings.
 const content = express.Router()
 
-content.use(express.json())
-
 // This will help us connect to the database
 const dbo = require('../db/db')
+
+content.get('/', (req, res) => {
+  res.render('index')
+})
 
 content.get('/posts', (req, res) => {
   // res.send('Hello World')
@@ -27,19 +29,30 @@ content.get('/posts', (req, res) => {
 })
 
 // Read post
-content.route('/read').get(async function (req, res) {
+
+content.get('/read', async (req, res) => {
   const db = dbo.getDb()
   const collection = db.collection('post')
-  collection.find({}).toArray(async function (err, post) {
-    if (post) {
-      // res.json(post)
-      await res.render('read', { post })
-    }
-    if (err) {
-      console.log('An error occured...')
-    }
-  })
+  const query = {
+    title: 'Bockchain Decrypted',
+  }
+  const post = await collection.findOne(query)
+  res.render('read', { post })
 })
+// content.route('/read').get(async function (req, res) {
+//   const db = dbo.getDb()
+//   const collection = db.collection('post')
+//   collection.find({}).toArray(async function (err, post) {
+//     if (post) {
+//       // res.json(post)
+//       // await res.render('read', { post })
+//       res.send(post)
+//     }
+//     if (err) {
+//       console.log('An error occured...')
+//     }
+//   })
+// })
 
 // content.get('/api', async (req, res) => {
 //   const db = dbo.getDb()
