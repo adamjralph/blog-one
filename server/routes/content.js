@@ -25,13 +25,39 @@ content.get('/posts', (req, res) => {
 })
 
 // Read post
+// content.route('/read').get(async function (req, res) {
+//   const db = dbo.getDb()
+//   const collection = db.collection('post')
+//   collection.find({}).toArray(async function (err, post) {
+//     if (post) {
+//       console.dir(post[0].title)
+//       await res.render('read', { post })
+//     }
+//     if (err) {
+//       console.log('An error occured...')
+//     }
+//   })
+// })
+
 content.route('/read').get(async function (req, res) {
   const db = dbo.getDb()
   const collection = db.collection('post')
-  const post = collection.find({ _id: '6292e02d2062124bbc5962bb' })
+  const query = { _id: '6292e02d2062124bbc5962bb' }
+  const cursor = collection.find()
+
+  if (!cursor) {
+    console.log('No documents found')
+  }
+
+  const post = await cursor.toArray()
+  console.log(post)
   await res.render('read', { post })
-  // console.log(post)
 })
+
+// const { post } = await collection.find({})
+// console.log(post)
+// res.render('read', post)
+// // console.log(post)
 
 // recordRoutes.use(express.json())
 // recordRoutes.set('view engine', 'ejs')
