@@ -1,11 +1,13 @@
 const express = require('express')
-const res = require('express/lib/response')
-const { append } = require('express/lib/response')
+// const res = require('express/lib/response')
+// const { append } = require('express/lib/response')
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /listings.
 const content = express.Router()
+
+content.use(express.json())
 
 // This will help us connect to the database
 const dbo = require('../db/db')
@@ -25,34 +27,27 @@ content.get('/posts', (req, res) => {
 })
 
 // Read post
-// content.route('/read').get(async function (req, res) {
-//   const db = dbo.getDb()
-//   const collection = db.collection('post')
-//   collection.find({}).toArray(async function (err, post) {
-//     if (post) {
-//       console.dir(post[0].title)
-//       await res.render('read', { post })
-//     }
-//     if (err) {
-//       console.log('An error occured...')
-//     }
-//   })
-// })
-
 content.route('/read').get(async function (req, res) {
   const db = dbo.getDb()
   const collection = db.collection('post')
-  const query = { _id: '6292e02d2062124bbc5962bb' }
-  const cursor = collection.find()
-
-  if (!cursor) {
-    console.log('No documents found')
-  }
-
-  const post = await cursor.toArray()
-  console.log(post)
-  await res.render('read', { post })
+  collection.find({}).toArray(async function (err, post) {
+    if (post) {
+      // res.json(post)
+      await res.render('read', { post })
+    }
+    if (err) {
+      console.log('An error occured...')
+    }
+  })
 })
+
+// content.get('/api', async (req, res) => {
+//   const db = dbo.getDb()
+//   const collection = db.collection('post')
+//   const result = await collection.find().toArray()
+//   console.log(result)
+//   res.send(result)
+// })
 
 // const { post } = await collection.find({})
 // console.log(post)
