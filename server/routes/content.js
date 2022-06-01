@@ -1,4 +1,5 @@
 const express = require('express')
+const { append } = require('express/lib/response')
 // const res = require('express/lib/response')
 // const { append } = require('express/lib/response')
 
@@ -39,27 +40,10 @@ content.get('/read', async (req, res) => {
   const post = await collection.findOne(query)
   res.render('read', { post })
 })
-// content.route('/read').get(async function (req, res) {
-//   const db = dbo.getDb()
-//   const collection = db.collection('post')
-//   collection.find({}).toArray(async function (err, post) {
-//     if (post) {
-//       // res.json(post)
-//       // await res.render('read', { post })
-//       res.send(post)
-//     }
-//     if (err) {
-//       console.log('An error occured...')
-//     }
-//   })
-// })
 
-// content.get('/api', async (req, res) => {
-//   const db = dbo.getDb()
-//   const collection = db.collection('post')
-//   const result = await collection.find().toArray()
-//   console.log(result)
-//   res.send(result)
+// Create post
+// append.post('/new', async (req, res) => {
+//   const
 // })
 
 // const { post } = await collection.find({})
@@ -97,6 +81,39 @@ content.get('/read', async (req, res) => {
 //   //     }
 //   //   })
 // })
+
+data = {
+  author: 'dev',
+  published: true,
+  slug: 'new-article',
+  title: 'The new test article',
+  category: 'blockchain',
+  summary:
+    'Lorem ipsum dolor, possimus accusamus illo? Ducimus, sapiente possimus!',
+  text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam doloribus et libero quae modi possimus accusamus illo? Ducimus, sapiente possimus!',
+}
+
+content.post('/new', (req, res, data) => {
+  const dbConnect = dbo.getDb()
+  const formData = {
+    author: req.body.author,
+    created: new Date(),
+    published: req.body.published,
+    slug: req.body.slug,
+    title: req.body.title,
+    category: req.body.category,
+    summary: req.body.summary,
+    text: req.body.text,
+  }
+
+  dbConnect.collection('post').insertOne(data, (err, result) => {
+    if (err) {
+      console.log('Error inserting data')
+    } else {
+      console.log(`Added new post with the following id: ${result.insertedId}`)
+    }
+  })
+})
 
 // This section will help you create a new record.
 content.route('/listings/recordSwipe').post(function (req, res) {
