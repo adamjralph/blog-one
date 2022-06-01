@@ -283,7 +283,8 @@ nav ul li a:hover {
 
 .showcase::before {
   content: '';
-  background: url(../images/shubham-dhage-article-1-unsplash.jpg) no-repeat center center/cover;
+  background: url(../images/shubham-dhage-article-1-unsplash.jpg) no-repeat
+    center center/cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -291,7 +292,6 @@ nav ul li a:hover {
   height: 100%;
   opacity: 0.4;
 }
-
 
 .showcase .showcase-content {
   z-index: 1;
@@ -542,4 +542,60 @@ footer .main-footer {
   opacity: 0.8;
   padding: 1rem;
   border-radius: 3px;
+}
+
+/* New post */
+.form-container {
+  max-width: var(--max-width);
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+form {
+  margin: 0;
+}
+/* .article-container > *:first-child {
+  grid-row: 1 / span 3;
+} */
+
+.form-light {
+  max-width: auto;
+  /* margin: auto; */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.form-heading {
+  color: #000;
+}
+
+.new-post-form {
+  width: auto;
+  margin: auto;
+  padding: 0 2rem;
+}
+
+.form-light p {
+  margin: auto;
+  max-width: var(--article-max-width);
+  padding: none;
+  color: #000;
+  padding-top: 0.5rem;
+}
+
+.input-author {
+  /* width: 300px; */
+}
+
+.textarea-text {
+  width: 70ch;
+}
+
+.create-post-btn {
+  display: block;
 }

@@ -96,24 +96,27 @@ data = {
   text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam doloribus et libero quae modi possimus accusamus illo? Ducimus, sapiente possimus!',
 }
 
-content.post('/new', (req, res, data) => {
+content.post('/new', async (req, res) => {
   const dbConnect = dbo.getDb()
   const formData = {
     author: req.body.author,
     created: new Date(),
-    published: req.body.published,
-    slug: req.body.slug,
+    // published: req.body.published,
+    // slug: req.body.slug,
     title: req.body.title,
-    category: req.body.category,
+    // category: req.body.category,
     summary: req.body.summary,
     text: req.body.text,
   }
 
-  dbConnect.collection('post').insertOne(data, (err, result) => {
+  const query = req.params
+
+  await dbConnect.collection('post').insertOne(formData, (err, result) => {
     if (err) {
-      console.log('Error inserting data')
+      res.status(400).send('Error inserting data')
     } else {
       console.log(`Added new post with the following id: ${result.insertedId}`)
+      res.status(204).send()
     }
   })
 })

@@ -10,6 +10,7 @@ const dbo = require('./db/db')
 const PORT = process.env.PORT || 5000
 const app = express()
 
+app.use(express.urlencoded({ extended: true }))
 app.use(require('./routes/content'))
 
 app.set('view engine', 'ejs')
