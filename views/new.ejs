@@ -1,0 +1,67 @@
+<%- include('partials/head') %> 
+  
+<title>The Chain Link | About </title>
+</head>
+
+<%- include('partials/nav') %> 
+
+<ul>
+  <li><a href="/" class="inactive">Home</a></li>
+  <li><a href="/articles" class="inactive">Articles</a></li>
+  <li><a href="/about" class="inactive">About</a></li>
+</ul>
+</div>
+</nav> 
+
+<section id="read" class="read">
+  <div class="container">
+
+    <div class="article-container">
+        <article class="article-light">
+          <!-- <h1 class="article-heading">Dfinity annouces Bitcoin on the Internet Computer</h1> -->
+          <h1 class="article-heading">New Post</h1>
+          <form action="/new" method="POST">
+            <label for="author">Author</label>
+            <br>
+            <input type="text" name="author" id="author" placeholder="author name" />
+            <br/>
+            <label for="title">Title</label>
+            <br>
+            <input type="text" name="title" id="title" placeholder="article title"/>
+            <br/>
+            <label for="summary">Summary</label>
+            <br>
+            <textarea type="text" name="summary" id="summary" placeholder="article summary"/></textarea>
+            <br/>
+            <label for="title">Title</label>
+            <br>
+            <input type="text" name="title" id="title" placeholder="article title"/>
+            <br/>
+            <label for="category">Select Category</label>
+            <br>
+            <select name="category" id="category">
+              <option value="blockchain"></option>
+            </select>
+            <button>Add Product</button>
+          </form>
+          <br>
+          <button>
+            <a href="/articles">Articles</a>
+          </button>
+        </article>
+        <aside class="card-aside">
+          <H2>Become a Contributor</H2>
+          <p>Join an ever-expanding community of talented content creators.</p>
+          <p>Help promote and fund your work through your own public profile page linked directly from your published articles.</p>
+          <a href="#" class="btn btn-dark btn-block">Join Now</a>
+        </aside>
+        <!-- <aside class="card-aside">
+          <H2>Join The Chain</H2>
+          <p>Sign Up for a Seven Day Free trail and recieve full access to out premium content</p>
+          <a href="#" class="btn btn-dark btn-block">Join Now</a>
+        </aside> -->
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %> 

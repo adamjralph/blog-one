@@ -81,6 +81,9 @@ content.get('/read', async (req, res) => {
 //   //     }
 //   //   })
 // })
+content.get('/new', (req, res) => {
+  res.render('new')
+})
 
 data = {
   author: 'dev',
