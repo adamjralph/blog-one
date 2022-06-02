@@ -16,6 +16,14 @@ content.get('/', (req, res) => {
   res.render('index')
 })
 
+content.get('/articles', (req, res) => {
+  res.render('articles')
+})
+
+content.get('/about', (req, res) => {
+  res.render('about')
+})
+
 content.get('/posts', (req, res) => {
   // res.send('Hello World')
   const db = dbo.getDb()
