@@ -562,12 +562,13 @@ form {
 } */
 
 .form-light {
-  max-width: auto;
-  /* margin: auto; */
+  max-width: 90%;
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  border-radius: 15px;
   padding: 1rem;
+  margin: 1rem;
 }
 
 .form-heading {
@@ -575,7 +576,9 @@ form {
 }
 
 .new-post-form {
-  width: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
   margin: auto;
   padding: 0 2rem;
 }
@@ -588,13 +591,20 @@ form {
   padding-top: 0.5rem;
 }
 
-.input-author {
-  /* width: 300px; */
+.new-post-form input,
+.new-post-form textarea {
+  max-width: 100%;
+  width: 650px;
+  margin: auto;
 }
 
-.textarea-text {
-  width: 70ch;
+.new-post-form input {
+  padding: 0.3em;
 }
+
+/* .textarea-text {
+  width: 70ch;
+} */
 
 .create-post-btn {
   display: block;

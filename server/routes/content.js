@@ -1,5 +1,6 @@
 const express = require('express')
 const { append } = require('express/lib/response')
+const { ObjectId } = require('mongodb')
 // const res = require('express/lib/response')
 // const { append } = require('express/lib/response')
 
@@ -41,46 +42,7 @@ content.get('/read', async (req, res) => {
   res.render('read', { post })
 })
 
-// Create post
-// append.post('/new', async (req, res) => {
-//   const
-// })
-
-// const { post } = await collection.find({})
-// console.log(post)
-// res.render('read', post)
-// // console.log(post)
-
-// recordRoutes.use(express.json())
-// recordRoutes.set('view engine', 'ejs')
-// recordRoutes.set('views', path.join(__dirname, '../../views'))
-
-// This section will help you get a list of all the records.
-// recordRoutes.route('/posts').get(async function (_req, res) {
-//   const dbConnect = dbo.getDb()
-
-//   const posts = await dbConnect.collection('post').find({}).toArray()
-//   console.log(posts[0].title)
-//   const post = posts[0]
-//   // res.json(posts)
-//   res.render('posts', posts)
-//   // res.send(posts[0].title)
-//   // dbConnect
-//   //   .collection('post')
-//   //   .find({})
-//   //   .limit(50)
-//   //   .toArray(function (err, result) {
-//   //     const { post } = result
-//   //     console.log(result)
-//   //     console.log({ post })
-//   //     if (err) {
-//   //       res.status(400).send('Error fetching listings!')
-//   //     } else {
-//   //       // res.send('hello world')
-//   //       res.render('posts', { post })
-//   //     }
-//   //   })
-// })
+// New post
 content.get('/new', (req, res) => {
   res.render('new')
 })
@@ -101,10 +63,10 @@ content.post('/new', async (req, res) => {
   const formData = {
     author: req.body.author,
     created: new Date(),
-    // published: req.body.published,
+    published: false,
     // slug: req.body.slug,
     title: req.body.title,
-    // category: req.body.category,
+    category: req.body.category,
     summary: req.body.summary,
     text: req.body.text,
   }
