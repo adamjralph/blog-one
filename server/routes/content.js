@@ -55,17 +55,6 @@ content.get('/new', (req, res) => {
   res.render('new')
 })
 
-data = {
-  author: 'dev',
-  published: true,
-  slug: 'new-article',
-  title: 'The new test article',
-  category: 'blockchain',
-  summary:
-    'Lorem ipsum dolor, possimus accusamus illo? Ducimus, sapiente possimus!',
-  text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam doloribus et libero quae modi possimus accusamus illo? Ducimus, sapiente possimus!',
-}
-
 content.post('/new', async (req, res) => {
   const dbConnect = dbo.getDb()
   const formData = {

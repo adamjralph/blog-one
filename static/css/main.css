@@ -573,6 +573,7 @@ form {
 
 .form-heading {
   color: #000;
+  display: inline-block;
 }
 
 .new-post-form {

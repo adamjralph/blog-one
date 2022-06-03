@@ -17,13 +17,12 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '../views'))
 
 app.use(express.static('static'))
-app.use(express.urlencoded({ extended: true }))
 app.use(favicon(path.join(__dirname + '../../static', 'favicon.ico')))
 
 // Global error handling
-// app.use(function (err, _req, res) {
-//   console.error(err)
-// })
+app.use(function (err, _req, res) {
+  console.error(err)
+})
 
 // perform a database connection when the server starts
 dbo.connectToServer(function (err) {

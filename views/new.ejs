@@ -21,14 +21,19 @@
           <!-- <h1 class="article-heading">Dfinity annouces Bitcoin on the Internet Computer</h1> -->
           <form class="new-post-form" action="/new" method="POST">
             <h1 class="form-heading">New Post</h1>
+            <button class="btn create-post-btn" type="submit">Create Post</button>
             <label class="label-author" for="author">Author</label>
             <br>
             <input class="input-author" type="text" name="author" id="author" placeholder="author name" />
             <br/>
             <label class="label-title" for="title">Title</label>
             <br>
-            <input class="input-title" type="text" name="title" id="title" placeholder="article title"/>
-            <br/>
+            <input class="input-title" type="text" name="title" id="input-title" placeholder="article title"/>
+            <br>
+            <p id="output"></p>
+            <label class="label-slug" for="slug">Article URL: </label>
+            <input type="text" name="slug" class="input-slug" id="input-slug">
+            <br>
             <label class="label-summary" for="summary">Summary</label>
             <br>
             <textarea class="textarea-summary" type="text" name="summary" id="summary" placeholder="article summary"/></textarea>
@@ -42,7 +47,6 @@
             <select class="select-category" name="category" id="category">
               <option value="blockchain">blockchain</option>
             </select>
-            <button class="btn create-post-btn" type="submit">Create Post</button>
             <br>
             <button>
               <a class="btn" href="/articles">Articles</a>
