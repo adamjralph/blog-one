@@ -61,7 +61,7 @@ content.post('/new', async (req, res) => {
     author: req.body.author,
     created: new Date(),
     published: false,
-    // slug: req.body.slug,
+    slug: req.body.slug,
     title: req.body.title,
     category: req.body.category,
     summary: req.body.summary,

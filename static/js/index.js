@@ -9,18 +9,9 @@ window.onscroll = function () {
   prevScrollpos = currentScrollPos
 }
 
-// document.getElementById('input-title').addEventListener('change', createSlug)
-
-// function createSlug(e) {
-//   console.log(this.value)
-//   document.getElementsByName('slug').textContent = this.value
-//   // alert('You typed in title: ' + this.value)
-//   e.preventDefault()
-// }
-
 let input = document.getElementById('input-title')
 // let result = document.getElementById('input-slug')
-let result = document.getElementById('output')
+let result = document.getElementById('input-slug')
 
 input.addEventListener('change', function () {
   let rawInput = this.value
