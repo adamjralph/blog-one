@@ -490,26 +490,41 @@ footer .main-footer {
 .article-light {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #fff;
+  color: #000;
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 3px;
-}
-
-.article-light p {
   /* margin: auto; */
-  max-width: 50ch;
-  padding: none;
-  color: #000;
-  padding-top: 0.5rem;
 }
 
-.article-container .article-heading {
+.article-light img {
+  width: 80%;
+}
+
+.article-content {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  max-width: 80%;
+  margin: auto;
+}
+
+.article-content p {
   max-width: 50ch;
-  padding: 0.5rem 0;
+  color: #000;
+}
+.article-content .article-heading {
   color: #000;
 }
 
-.article-container .article-meta {
+.article-light .article-meta {
+  width: 50ch;
+  padding: 1.5rem 0;
+  color: #000;
+}
+
+.article-content .article-meta {
   display: flex;
 }
 

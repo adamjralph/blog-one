@@ -1,0 +1,27 @@
+<%- include('partials/head') %> 
+  
+<title>The Chain Link | Content Moderation </title>
+</head>
+
+<%- include('partials/nav') %> 
+
+<ul>
+  <li><a href="/" class="inactive">Home</a></li>
+  <li><a href="/articles" class="inactive">Articles</a></li>
+  <li><a href="/about" class="inactive">About</a></li>
+</ul>
+</div>
+</nav> 
+
+<section id="mod" class="mod">
+  <div class="container">
+    <% for(let i = 0; i < articles.length; i++)  {%> 
+      <article class="article-dark">
+            <h5 class="article-heading"><%= articles[i].title %></h5>
+            <p class="article-created"><%= articles[i].created %></p>
+          </article>
+          <% } %> 
+    </div>
+</section>
+
+<%- include('partials/footer') %> 

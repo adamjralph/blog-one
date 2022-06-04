@@ -12,6 +12,7 @@ const content = express.Router()
 // This will help us connect to the database
 const dbo = require('../db/db')
 
+// Home page
 content.get('/', (req, res) => {
   const db = dbo.getDb()
   const collection = db.collection('post')
@@ -20,14 +21,10 @@ content.get('/', (req, res) => {
       await res.render('index', { post })
     }
     if (err) {
-      console.error('Unable to retrieve post')
+      console.error('Unable to retrieve content')
     }
   })
 })
-
-// content.get('/articles', (req, res) => {
-//   res.render('articles')
-// })
 
 content.get('/about', (req, res) => {
   res.render('about')
@@ -46,30 +43,29 @@ content.get('/articles', (req, res) => {
     }
   })
 })
-// function getArticles() {
-//   content.get('partials/articles', (req, res) => {
-//     const db = dbo.getDb()
-//     const collection = db.collection('post')
-//     collection.find({}).toArray(async function (err, post) {
-//       if (post) {
-//         await res.render('partials/articles', { post })
-//       }
-//       if (err) {
-//         console.error('Unable to retrieve post')
-//       }
-//     })
-//   })
-// }
 
-content.get('/posts', (req, res) => {
+// Read article
+content.get('/read/:slug', async (req, res) => {
   const db = dbo.getDb()
   const collection = db.collection('post')
-  collection.find({}).toArray(async function (err, post) {
-    if (post) {
-      await res.render('posts', { post })
+  const query = { slug: req.params.slug }
+  const article = await collection.findOne(query)
+  try {
+    res.render(`read`, { article })
+  } catch (err) {
+    console.error('Unable to get article')
+  }
+})
+
+content.get('/mod', (req, res) => {
+  const db = dbo.getDb()
+  const collection = db.collection('post')
+  collection.find({}).toArray(async function (err, articles) {
+    if (articles) {
+      await res.render('mod', { articles })
     }
     if (err) {
-      console.error('Unable to retrieve post')
+      console.error('Unable to retrieve article')
     }
   })
 })
