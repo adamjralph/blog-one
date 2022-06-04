@@ -560,6 +560,40 @@ footer .main-footer {
   text-align: center;
 }
 
+/* Mod page */
+.mod-dark {
+  background-color: var(--gunmetal-2);
+  padding: 1rem;
+  border-radius: 5px;
+  position: relative;
+}
+
+.mod-article {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  /* grid-template-rows: 25% 75%; */
+  justify-content: space-between;
+  border: #000 2px solid;
+  padding: 1.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+}
+
+.mod-dark p {
+  margin: auto;
+  /* padding-right: 1rem; */
+  text-align: right;
+  /* border: red 1px solid; */
+}
+
+.mod-dark .l-heading {
+  text-align: center;
+}
+
+.mod-dark .mod-controls .btn {
+  margin: 3px;
+}
+
 /* Read aside */
 .card-aside {
   background-color: var(--gunmetal-2);
