@@ -7,34 +7,59 @@ const express = require('express')
 // The router will be added as a middleware and will take control of requests starting with path /listings.
 const content = express.Router()
 
+// const articlesPartial = require('../../views/partials/articles.ejs')
+
 // This will help us connect to the database
 const dbo = require('../db/db')
 
 content.get('/', (req, res) => {
-  res.render('index')
-})
-
-content.get('/articles', (req, res) => {
-  res.render('articles')
-})
-
-content.get('/about', (req, res) => {
-  res.render('about')
-})
-
-// Articles page
-content.get('/testarticles', (req, res) => {
   const db = dbo.getDb()
   const collection = db.collection('post')
   collection.find({}).toArray(async function (err, post) {
     if (post) {
-      await res.render('testarticles', { post })
+      await res.render('index', { post })
     }
     if (err) {
       console.error('Unable to retrieve post')
     }
   })
 })
+
+// content.get('/articles', (req, res) => {
+//   res.render('articles')
+// })
+
+content.get('/about', (req, res) => {
+  res.render('about')
+})
+
+// Articles page
+content.get('/articles', (req, res) => {
+  const db = dbo.getDb()
+  const collection = db.collection('post')
+  collection.find({}).toArray(async function (err, post) {
+    if (post) {
+      await res.render('articles', { post })
+    }
+    if (err) {
+      console.error('Unable to retrieve post')
+    }
+  })
+})
+// function getArticles() {
+//   content.get('partials/articles', (req, res) => {
+//     const db = dbo.getDb()
+//     const collection = db.collection('post')
+//     collection.find({}).toArray(async function (err, post) {
+//       if (post) {
+//         await res.render('partials/articles', { post })
+//       }
+//       if (err) {
+//         console.error('Unable to retrieve post')
+//       }
+//     })
+//   })
+// }
 
 content.get('/posts', (req, res) => {
   const db = dbo.getDb()
