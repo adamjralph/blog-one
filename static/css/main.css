@@ -573,6 +573,26 @@ footer .main-footer {
   margin: 1rem;
 }
 
+.form-light .textarea-summary {
+  font: var(--roboto);
+  padding: 5px;
+}
+
+.form-light input,
+.form-light textarea {
+  border: 0.1px solid rgb(158, 149, 149);
+  border-radius: 5px;
+}
+
+.form-light .summary {
+  font: sans-serif;
+  line-height: 1.4;
+}
+
+.form-light input:invalid {
+  border: red solid 1px;
+}
+
 form {
   margin: 0;
 }

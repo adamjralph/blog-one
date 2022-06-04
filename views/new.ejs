@@ -28,13 +28,12 @@
             <br>
             <input class="input-author" type="text" name="author" id="author" placeholder="author name" />
             <br/>
-            <label class="label-title" for="title">Title</label>
+            <label class="label-title" for="title" >Title</label>
             <br>
             <input class="input-title" type="text" name="title" id="input-title" placeholder="article title"/>
             <br>
-            <!-- <label class="label-slug" for="slug">Article URL: </label>
-            <textarea name="slug" id="input-slug" rows="1"></textarea> -->
-            <!-- <input type="text" name="slug" class="input-slug" id="input-slug"> -->
+            <label class="label-image" for="image">Image name (upload image)</label>
+            <input type="text" name="image" class="input-image" id="input-image">
             <br>
             <label class="label-summary" for="summary">Summary</label>
             <br>
@@ -42,16 +41,17 @@
             <br/>
             <label class="label-text" for="text">Text</label>
             <br>
-            <textarea class="textarea-text" rows="10" type="text" name="text" id="text"></textarea>
+            <textarea class="textarea-text" rows="10" type="text" name="text" id="edit-textarea"></textarea>
             <br/>
             <label class="label-category" for="category">Select Category</label>
             <br>
             <select class="select-category" name="category" id="category">
               <option value="blockchain">blockchain</option>
-              <option value="blockchain">web3</option>
-              <option value="blockchain">bitcoin</option>
-              <option value="blockchain">ethereum</option>
-              <option value="blockchain">internet computer</option>
+              <option value="web3">web3</option>
+              <option value="bitcoin">bitcoin</option>
+              <option value="ethereum">ethereum</option>
+              <option value="internet computer">internet computer</option>
+              <option value="security">security</option>
             </select>
             <br>
           </article>

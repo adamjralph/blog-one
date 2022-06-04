@@ -1,6 +1,6 @@
 const express = require('express')
-const { append } = require('express/lib/response')
-const { ObjectId } = require('mongodb')
+// const { append } = require('express/lib/response')
+// const { ObjectId } = require('mongodb')
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -69,26 +69,31 @@ content.get('/new', (req, res) => {
 content.post('/new', async (req, res) => {
   const dbConnect = dbo.getDb()
 
-  const titleForSlug = req.body.title
-  let rawSlug = titleForSlug.split(' ').join('-')
-  rawSlug = rawSlug
+  const author = req.body.author.trim()
+  const title = req.body.title.trim()
+  const summary = req.body.summary.trim()
+  const text = req.body.text.trim()
+
+  const slug = title
     .replace(',', '')
     .replace('.', '')
     .replace(':', '')
     .replace('?', '')
     .replace('&', '')
-
-  let slug = rawSlug.toLowerCase()
+    .replace('-', '')
+    .split(' ')
+    .join('-')
+    .toLowerCase()
 
   const formData = {
-    author: req.body.author,
+    author: author,
     created: new Date(),
     published: false,
-    title: req.body.title,
+    title: title,
     slug: slug,
     category: req.body.category,
-    summary: req.body.summary,
-    text: req.body.text,
+    summary: summary,
+    text: text,
   }
 
   await dbConnect.collection('post').insertOne(formData, (err, result) => {
