@@ -1,6 +1,8 @@
 require('dotenv').config()
 const favicon = require('serve-favicon')
 
+// const cors = require('cors')
+
 const express = require('express')
 const path = require('path')
 
@@ -10,6 +12,7 @@ const dbo = require('./db/db')
 const PORT = process.env.PORT || 5000
 const app = express()
 
+// app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(require('./routes/content'))
 
@@ -20,9 +23,9 @@ app.use(express.static('static'))
 app.use(favicon(path.join(__dirname + '../../static', 'favicon.ico')))
 
 // Global error handling
-app.use(function (err, _req, res) {
-  console.error(err)
-})
+// app.use(function (err, _req, res) {
+//   console.error(err)
+// })
 
 // perform a database connection when the server starts
 dbo.connectToServer(function (err) {

@@ -1,8 +1,6 @@
 const express = require('express')
 const { append } = require('express/lib/response')
 const { ObjectId } = require('mongodb')
-// const res = require('express/lib/response')
-// const { append } = require('express/lib/response')
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -24,8 +22,21 @@ content.get('/about', (req, res) => {
   res.render('about')
 })
 
+// Articles page
+content.get('/testarticles', (req, res) => {
+  const db = dbo.getDb()
+  const collection = db.collection('post')
+  collection.find({}).toArray(async function (err, post) {
+    if (post) {
+      await res.render('testarticles', { post })
+    }
+    if (err) {
+      console.error('Unable to retrieve post')
+    }
+  })
+})
+
 content.get('/posts', (req, res) => {
-  // res.send('Hello World')
   const db = dbo.getDb()
   const collection = db.collection('post')
   collection.find({}).toArray(async function (err, post) {
@@ -57,18 +68,28 @@ content.get('/new', (req, res) => {
 
 content.post('/new', async (req, res) => {
   const dbConnect = dbo.getDb()
+
+  const titleForSlug = req.body.title
+  let rawSlug = titleForSlug.split(' ').join('-')
+  rawSlug = rawSlug
+    .replace(',', '')
+    .replace('.', '')
+    .replace(':', '')
+    .replace('?', '')
+    .replace('&', '')
+
+  let slug = rawSlug.toLowerCase()
+
   const formData = {
     author: req.body.author,
     created: new Date(),
     published: false,
-    slug: req.body.slug,
     title: req.body.title,
+    slug: slug,
     category: req.body.category,
     summary: req.body.summary,
     text: req.body.text,
   }
-
-  const query = req.params
 
   await dbConnect.collection('post').insertOne(formData, (err, result) => {
     if (err) {

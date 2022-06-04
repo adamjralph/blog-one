@@ -15,3 +15,11 @@
 - click opens up article in /read
 
 - add show more or have continious scrolling between head and footer
+
+## New post logic
+
+- get all categorys and populate options for select element on form
+
+## Admin area
+
+- add page to view edit and publish articles

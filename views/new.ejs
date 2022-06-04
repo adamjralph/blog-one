@@ -1,6 +1,6 @@
 <%- include('partials/head') %> 
   
-<title>The Chain Link | About </title>
+<title>The Chain Link | Create Post </title>
 </head>
 
 <%- include('partials/nav') %> 
@@ -20,8 +20,10 @@
         <article class="form-light">
           <!-- <h1 class="article-heading">Dfinity annouces Bitcoin on the Internet Computer</h1> -->
           <form class="new-post-form" action="/new" method="POST">
-            <h1 class="form-heading">New Post</h1>
-            <button class="btn create-post-btn" type="submit">Create Post</button>
+            <div class="new-post-header">
+              <h1 class="form-heading">New Post</h1>
+              <button class="btn btn-gray create-post-btn" type="submit">Create Post</button>
+            </div>
             <label class="label-author" for="author">Author</label>
             <br>
             <input class="input-author" type="text" name="author" id="author" placeholder="author name" />
@@ -30,8 +32,8 @@
             <br>
             <input class="input-title" type="text" name="title" id="input-title" placeholder="article title"/>
             <br>
-            <label class="label-slug" for="input-slug">Article URL: </label>
-            <textarea name="slug" id="input-slug" rows="1"></textarea>
+            <!-- <label class="label-slug" for="slug">Article URL: </label>
+            <textarea name="slug" id="input-slug" rows="1"></textarea> -->
             <!-- <input type="text" name="slug" class="input-slug" id="input-slug"> -->
             <br>
             <label class="label-summary" for="summary">Summary</label>
@@ -46,11 +48,12 @@
             <br>
             <select class="select-category" name="category" id="category">
               <option value="blockchain">blockchain</option>
+              <option value="blockchain">web3</option>
+              <option value="blockchain">bitcoin</option>
+              <option value="blockchain">ethereum</option>
+              <option value="blockchain">internet computer</option>
             </select>
             <br>
-            <button>
-              <a class="btn" href="/articles">Articles</a>
-            </button>
           </article>
           </form>
         <!-- <aside class="card-aside">
