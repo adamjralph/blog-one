@@ -1,6 +1,7 @@
 const express = require('express')
+
 // const { append } = require('express/lib/response')
-// const { ObjectId } = require('mongodb')
+const mongo = require('mongodb')
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -121,13 +122,42 @@ content.post('/edit/:slug', async (req, res) => {
   })
 })
 
+// Delete article
+content.delete('/delete/:id', async (req, res, next) => {
+  const id = req.params.id
+  console.log('id: ' + id + ' type: ' + typeof id)
+  const mongoId = new mongo.ObjectId(id)
+  const query = { _id: mongoId }
+  const deleted = await getCollection().deleteOne(query)
+  try {
+    console.dir(deleted)
+    res.render('delete')
+  } catch (err) {
+    console.error('Unable to delete article')
+  }
+  // res.render('delete')
+})
+
+content.delete('/delete/:id', async (req, res) => {
+  const id = req.params.id
+  const mongoId = new mongo.ObjectId(id)
+  const query = { _id: mongoId }
+  const dbConnect = dbo.getDb()
+  const collection = dbConnect.collection('post')
+  const deleted = await collection.deleteOne(query)
+  try {
+    res.render('mod')
+  } catch (err) {
+    console.error('Unable to get article')
+  }
+})
 // Content Moderation
 content.get('/mod', (req, res) => {
   const db = dbo.getDb()
   const collection = db.collection('post')
-  collection.find({}).toArray(async function (err, articles) {
-    if (articles) {
-      await res.render('mod', { articles })
+  collection.find({}).toArray(async function (err, article) {
+    if (article) {
+      await res.render('mod', { article })
     }
     if (err) {
       console.error('Unable to retrieve article')

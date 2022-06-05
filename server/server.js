@@ -1,7 +1,10 @@
 require('dotenv').config()
 const favicon = require('serve-favicon')
 
+const methodOverride = require('method-override')
+
 const express = require('express')
+const cors = require('cors')
 const path = require('path')
 
 // get MongoDB driver connection
@@ -10,6 +13,8 @@ const dbo = require('./db/db')
 const PORT = process.env.PORT || 5000
 const app = express()
 
+app.use(methodOverride('_method'))
+// app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(require('./routes/content'))
 

@@ -590,12 +590,20 @@ footer .main-footer {
   text-align: center;
 }
 
+.mod-dark .mod-author {
+  margin-bottom: 0;
+}
+
 .mod-dark .mod-controls {
   margin: auto;
 }
 
-.mod-dark .mod-author {
-  margin-bottom: 0;
+.mod-dark .mod-controls .delete-button-form {
+  display: inline-block;
+}
+
+.mod-dark .mod-controls .mod-created {
+  display: inline-block;
 }
 
 /* Read aside */

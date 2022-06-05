@@ -16,21 +16,23 @@
 <section id="mod" class="mod">
   <div class="container">
     <article class="mod-dark">
-    <% for(let i = 0; i < articles.length; i++)  {%> 
-      <div class="mod-article">
+    <% for(let i = 0; i < article.length; i++)  {%> 
+      <div id="<%= article[i]._id %>" class="mod-article">
         <div class="mod-info">
-          <h5 class="mod-heading"><%= articles[i].title %></h5>
-          <a href="#" class="mod-author category bg-light-category"><span>author: </span><%= articles[i].author %>
+          <h5 class="mod-heading"><%= article[i].title %></h5>
+          <a href="#" class="mod-author category bg-light-category"><span>author: </span><%= article[i].author %>
         </a>
         </div>
         <div class="mod-controls">
-          <a href="/edit/<%= articles[i].slug %> ">
+          <a href="/edit/<%= article[i].slug %> ">
             <button class="btn">Edit</button>
           </a>
           <button class="btn">Publish</button>
-          <button class="btn">Delete</button>
+          <form class="delete-button-form" action="/delete/<%= article[i]._id %>?_method=DELETE" method="post" >
+            <button class="btn">Delete</button>
+          </form>
         </div>
-        <p class="mod-created"><%= articles[i].created %></p>
+        <p class="mod-created"><%= article[i].created %></p>
       </div>
             <% } %> 
     </article>
