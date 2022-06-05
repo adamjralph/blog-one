@@ -12,6 +12,11 @@ const content = express.Router()
 // This will help us connect to the database
 const dbo = require('../db/db')
 
+function getCollection() {
+  const db = dbo.getDb()
+  return db.collection('post')
+}
+
 // Home page
 content.get('/', (req, res) => {
   const db = dbo.getDb()
@@ -57,6 +62,19 @@ content.get('/read/:slug', async (req, res) => {
   }
 })
 
+// Edit article
+content.get('/edit/:slug', async (req, res) => {
+  const collection = getCollection()
+  const query = { slug: req.params.slug }
+  const article = await collection.findOne(query)
+  try {
+    res.render('edit', { article })
+  } catch (err) {
+    console.err('Unable to get article')
+  }
+})
+
+// Content Moderation
 content.get('/mod', (req, res) => {
   const db = dbo.getDb()
   const collection = db.collection('post')

@@ -590,8 +590,12 @@ footer .main-footer {
   text-align: center;
 }
 
-.mod-dark .mod-controls .btn {
-  margin: 3px;
+.mod-dark .mod-controls {
+  margin: auto;
+}
+
+.mod-dark .mod-author {
+  margin-bottom: 0;
 }
 
 /* Read aside */
