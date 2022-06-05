@@ -633,6 +633,7 @@ footer .main-footer {
 
 .form-light input,
 .form-light textarea {
+  font: var(--roboto);
   border: 0.1px solid rgb(158, 149, 149);
   border-radius: 5px;
 }

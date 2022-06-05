@@ -74,6 +74,53 @@ content.get('/edit/:slug', async (req, res) => {
   }
 })
 
+content.post('/edit/:slug', async (req, res) => {
+  const collection = getCollection()
+  const query = { slug: req.params.slug }
+
+  const author = req.body.author.trim()
+  const title = req.body.title.trim()
+  const image = req.body.image.trim()
+  const summary = req.body.summary.trim()
+  const text = req.body.text.trim()
+
+  const slug = title
+    .replace(',', '')
+    .replace('.', '')
+    .replace(':', '')
+    .replace('?', '')
+    .replace('&', '')
+    .replace('-', '')
+    .split(' ')
+    .join('-')
+    .toLowerCase()
+
+  const formData = {
+    $set: {
+      author: author,
+      updated: new Date(),
+      published: false,
+      title: title,
+      image: image,
+      slug: slug,
+      category: req.body.category,
+      summary: summary,
+      text: text,
+    },
+  }
+  const article = req.body
+  await collection.updateOne(query, formData, function (err, _result) {
+    if (err) {
+      res
+        .status(400)
+        .send(`Error updating likes on listing with id ${listingQuery.id}!`)
+    } else {
+      console.log('1 document updated')
+      res.render('read', { article })
+    }
+  })
+})
+
 // Content Moderation
 content.get('/mod', (req, res) => {
   const db = dbo.getDb()
