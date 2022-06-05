@@ -606,6 +606,25 @@ footer .main-footer {
   display: inline-block;
 }
 
+/* Delete */
+.delete-dark {
+  display: grid;
+  background-color: var(--gunmetal-2);
+  padding: 1rem;
+  border-radius: 5px;
+  position: relative;
+  height: 30vh;
+}
+
+.delete-dark .article-deleted {
+  align-self: center;
+  margin: 1rem auto;
+}
+
+.delete-dark .back-btn {
+  margin: 1rem auto;
+}
+
 /* Read aside */
 .card-aside {
   background-color: var(--gunmetal-2);
