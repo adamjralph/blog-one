@@ -1,3 +1,4 @@
+// Navbar hide/show on scroll
 let prevScrollpos = window.scrollY
 window.onscroll = function () {
   let currentScrollPos = window.pageYOffset
@@ -9,12 +10,8 @@ window.onscroll = function () {
   prevScrollpos = currentScrollPos
 }
 
-// let input = document.getElementById('input-title')
-// let result = document.getElementById('input-slug')
-
-// input.addEventListener('change', function () {
-//   let rawInput = this.value
-//   let slug = rawInput.split(' ').join('-')
-//   result.textContent = slug
-//   console.log(slug)
-// })
+// Delete article confirm
+function deleteArticleConfirm(event) {
+  if (!confirm('Are you sure you want to delete this article?'))
+    event.preventDefault()
+}

@@ -23,13 +23,13 @@
           <a href="#" class="mod-author category bg-light-category"><span>author: </span><%= article[i].author %>
         </a>
         </div>
-        <div class="mod-controls">
+          <div class="mod-controls">
           <a href="/edit/<%= article[i].slug %> ">
             <button class="btn">Edit</button>
           </a>
           <button class="btn">Publish</button>
           <form class="delete-button-form" action="/delete/<%= article[i]._id %>?_method=DELETE" method="post" >
-            <button class="btn">Delete</button>
+            <button type="submit" onclick="deleteArticleConfirm(event)" id="mod-delete-btn" class="btn">Delete</button>
           </form>
         </div>
         <p class="mod-created"><%= article[i].created %></p>
