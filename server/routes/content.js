@@ -12,6 +12,7 @@ const content = express.Router()
 
 // This will help us connect to the database
 const dbo = require('../db/db')
+const HandleError = require('../HandleError')
 
 function getCollection() {
   const db = dbo.getDb()
