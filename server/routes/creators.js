@@ -4,7 +4,6 @@ const creators = express.Router()
 const HandleError = require('../HandleError')
 
 const dbo = require('../db/db')
-const { append } = require('express/lib/response')
 
 function getCollection() {
   const db = dbo.getDb()
