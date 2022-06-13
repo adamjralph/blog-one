@@ -10,10 +10,11 @@ const content = express.Router()
 
 // const articlesPartial = require('../../views/partials/articles.ejs')
 
-// This will help us connect to the database
 const dbo = require('../db/db')
+const { validateArticle } = require('../../utils/validationSchema')
 const HandleError = require('../HandleError')
 const handleAsync = require('../handleAsync')
+const Joi = require('joi')
 
 function getCollection() {
   const db = dbo.getDb()
@@ -52,6 +53,63 @@ content.get('/articles', (req, res) => {
   })
 })
 
+// New article
+content.post(
+  '/new',
+  // validateArticle,
+  handleAsync(async (req, res, next) => {
+    const articleSchema = Joi.object({
+      formData: Joi.object({
+        author: Joi.string().required(),
+        created: Joi.string().required(),
+        published: Joi.boolean().required(),
+        title: Joi.string().required(),
+        slug: Joi.string().required(),
+        category: Joi.string(),
+        summary: Joi.string(),
+        text: Joi.string(),
+      }),
+    })
+
+    const dbConnect = dbo.getDb()
+
+    const author = req.body.author.trim()
+    const title = req.body.title.trim()
+    const summary = req.body.summary.trim()
+    const text = req.body.text.trim()
+
+    const result = articleSchema.validate(req.body)
+    console.log(result)
+
+    const slug = title
+      .replace(',', '')
+      .replace('.', '')
+      .replace(':', '')
+      .replace('?', '')
+      .replace('&', '')
+      .replace('-', '')
+      .split(' ')
+      .join('-')
+      .toLowerCase()
+
+    const formData = {
+      author: author,
+      created: new Date(),
+      published: false,
+      title: title,
+      slug: slug,
+      category: req.body.category,
+      summary: summary,
+      text: text,
+    }
+
+    await dbConnect.collection('post').insertOne(formData, (err, result) => {
+      console.log(`Added new post with the following id: ${result.insertedId}`)
+    })
+    res.redirect('mod')
+  })
+)
+
 // Read article
 content.get('/read/:slug', async (req, res, next) => {
   const db = dbo.getDb()
@@ -77,6 +135,7 @@ content.get(
 
 content.post(
   '/edit/:slug',
+  // validateArticle,
   handleAsync(async (req, res) => {
     const collection = getCollection()
     const query = { slug: req.params.slug }
@@ -173,45 +232,6 @@ content.get('/read', async (req, res) => {
 content.get('/new', (req, res) => {
   res.render('new')
 })
-
-content.post(
-  '/new',
-  handleAsync(async (req, res, next) => {
-    const dbConnect = dbo.getDb()
-
-    const author = req.body.author.trim()
-    const title = req.body.title.trim()
-    const summary = req.body.summary.trim()
-    const text = req.body.text.trim()
-
-    const slug = title
-      .replace(',', '')
-      .replace('.', '')
-      .replace(':', '')
-      .replace('?', '')
-      .replace('&', '')
-      .replace('-', '')
-      .split(' ')
-      .join('-')
-      .toLowerCase()
-
-    const formData = {
-      author: author,
-      created: new Date(),
-      published: false,
-      title: title,
-      slug: slug,
-      category: req.body.category,
-      summary: summary,
-      text: text,
-    }
-
-    await dbConnect.collection('post').insertOne(formData, (err, result) => {
-      console.log(`Added new post with the following id: ${result.insertedId}`)
-    })
-    res.redirect('mod')
-  })
-)
 
 // Reference material
 

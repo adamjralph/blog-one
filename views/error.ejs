@@ -1,0 +1,28 @@
+<%- include('partials/head') %> 
+  
+<title>The Chain Link | Error</title>
+</head>
+
+<%- include('partials/nav') %> 
+
+<ul>
+  <li><a href="/" class="inactive">Home</a></li>
+  <li><a href="/articles" class="inactive">Articles</a></li>
+  <li><a href="/about" class="inactive">About</a></li>
+</ul>
+</div>
+</nav> 
+
+<section id="delete" class="delete">
+  <div class="container">
+    <article class="error-dark">
+      <h1 class="error-heading"><%= err.message %> </h1>
+      <p class="error-text"><%= err.stack %> </p>
+      <a class="back-btn" href="/articles">
+        <button class="btn">Back</button>
+      </a>
+    </article>
+    </div>
+</section>
+
+<%- include('partials/footer') %> 

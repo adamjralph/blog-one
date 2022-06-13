@@ -613,7 +613,7 @@ footer .main-footer {
   padding: 1rem;
   border-radius: 5px;
   position: relative;
-  height: 30vh;
+  height: 100;
 }
 
 .delete-dark .article-deleted {
@@ -623,6 +623,30 @@ footer .main-footer {
 
 .delete-dark .back-btn {
   margin: 1rem auto;
+}
+
+/* Error page */
+.error-dark {
+  display: grid;
+  background-color: var(--gunmetal-2);
+  padding: 1rem;
+  border-radius: 5px;
+  position: relative;
+  height: auto;
+}
+
+.error-dark .error-heading {
+  align-self: center;
+  margin: 1rem auto;
+}
+
+.error-dark .back-btn {
+  margin: 1rem auto;
+}
+
+.error-dark .error-text {
+  width: 60ch;
+  margin: auto;
 }
 
 /* Read aside */
