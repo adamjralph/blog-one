@@ -23,7 +23,7 @@ function getCollection() {
 // Home page
 content.get('/', (req, res) => {
   const db = dbo.getDb()
-  const collection = db.collection('post')
+  const collection = getCollection()
   collection.find({}).toArray(async function (err, post) {
     if (post) {
       await res.render('index', { post })
