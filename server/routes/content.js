@@ -11,14 +11,23 @@ const content = express.Router()
 // const articlesPartial = require('../../views/partials/articles.ejs')
 
 const dbo = require('../db/db')
-const { validateArticle } = require('../../utils/validationSchema')
+const { validArticle } = require('../../utils/validationSchema')
 const HandleError = require('../../utils/HandleError')
 const handleAsync = require('../../utils/handleAsync')
-const Joi = require('joi')
 
 function getCollection() {
   const db = dbo.getDb()
   return db.collection('post')
+}
+
+const validateArticle = (req, res, next) => {
+  const { error } = validArticle.validate(req.body)
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(',')
+    throw new HandleError(msg, 400)
+  } else {
+    next()
+  }
 }
 
 // Home page
@@ -56,6 +65,7 @@ content.get('/articles', (req, res) => {
 // New article
 content.post(
   '/new',
+  validateArticle,
   handleAsync(async (req, res, next) => {
     const dbConnect = dbo.getDb()
 
@@ -87,9 +97,9 @@ content.post(
       summary: summary,
       text: text,
     }
-    console.dir(formData)
+    // console.dir(formData)
 
-    validateArticle(formData)
+    // validateArticle(formData)
 
     await dbConnect.collection('post').insertOne(formData, (err, result) => {
       console.log(`Added new post with the following id: ${result.insertedId}`)
