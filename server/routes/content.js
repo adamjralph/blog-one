@@ -56,12 +56,12 @@ content.get('/articles', (req, res) => {
 // New article
 content.post(
   '/new',
-  validateArticle,
   handleAsync(async (req, res, next) => {
     const dbConnect = dbo.getDb()
 
     const author = req.body.author.trim()
     const title = req.body.title.trim()
+    const image = req.body.image.trim()
     const summary = req.body.summary.trim()
     const text = req.body.text.trim()
 
@@ -82,10 +82,14 @@ content.post(
       published: false,
       title: title,
       slug: slug,
+      image: image,
       category: req.body.category,
       summary: summary,
       text: text,
     }
+    console.dir(formData)
+
+    validateArticle(formData)
 
     await dbConnect.collection('post').insertOne(formData, (err, result) => {
       console.log(`Added new post with the following id: ${result.insertedId}`)
