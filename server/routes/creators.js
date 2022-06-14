@@ -1,7 +1,7 @@
 const express = require('express')
 
 const creators = express.Router()
-const HandleError = require('../HandleError')
+const HandleError = require('../../utils/HandleError')
 
 const dbo = require('../db/db')
 

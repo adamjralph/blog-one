@@ -3,7 +3,7 @@ const favicon = require('serve-favicon')
 
 const express = require('express')
 const path = require('path')
-const HandleError = require('./HandleError')
+const HandleError = require('../utils/HandleError')
 const methodOverride = require('method-override')
 
 // get MongoDB driver connection

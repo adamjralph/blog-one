@@ -12,8 +12,8 @@ const content = express.Router()
 
 const dbo = require('../db/db')
 const { validateArticle } = require('../../utils/validationSchema')
-const HandleError = require('../HandleError')
-const handleAsync = require('../handleAsync')
+const HandleError = require('../../utils/HandleError')
+const handleAsync = require('../../utils/handleAsync')
 const Joi = require('joi')
 
 function getCollection() {
@@ -56,30 +56,14 @@ content.get('/articles', (req, res) => {
 // New article
 content.post(
   '/new',
-  // validateArticle,
+  validateArticle,
   handleAsync(async (req, res, next) => {
-    const articleSchema = Joi.object({
-      formData: Joi.object({
-        author: Joi.string().required(),
-        created: Joi.string().required(),
-        published: Joi.boolean().required(),
-        title: Joi.string().required(),
-        slug: Joi.string().required(),
-        category: Joi.string(),
-        summary: Joi.string(),
-        text: Joi.string(),
-      }),
-    })
-
     const dbConnect = dbo.getDb()
 
     const author = req.body.author.trim()
     const title = req.body.title.trim()
     const summary = req.body.summary.trim()
     const text = req.body.text.trim()
-
-    const result = articleSchema.validate(req.body)
-    console.log(result)
 
     const slug = title
       .replace(',', '')
