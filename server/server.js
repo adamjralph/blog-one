@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 5000
 const app = express()
 
 app.use(methodOverride('_method'))
-// app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(require('./routes/content'))
 app.use(require('./routes/creators'))

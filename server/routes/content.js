@@ -20,19 +20,18 @@ function getCollection() {
   return db.collection('post')
 }
 
-// const validateArticle = (req, res, next) => {
-//   const { error } = validArticle.validate(req.body)
-//   if (error) {
-//     const msg = error.details.map((el) => el.message).join(',')
-//     throw new HandleError(msg, 400)
-//   } else {
-//     next()
-//   }
-// }
+const validateArticle = (req, res, next) => {
+  const { error } = validArticle.validate(req.body)
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(',')
+    throw new HandleError(msg, 400)
+  } else {
+    next()
+  }
+}
 
 // Home page
 content.get('/', (req, res) => {
-  const db = dbo.getDb()
   const collection = getCollection()
   collection.find({}).toArray(async function (err, post) {
     if (post) {
@@ -62,10 +61,17 @@ content.get('/articles', (req, res) => {
   })
 })
 
+content.post('/new', (req, res, next) => {
+  console.log(req.body)
+  next()
+})
+
 // New article
 content.post(
   '/new',
+  validateArticle,
   handleAsync(async (req, res, next) => {
+    // validateArticle()
     const dbConnect = dbo.getDb()
 
     const author = req.body.author.trim()
@@ -88,7 +94,7 @@ content.post(
 
     const formData = {
       author: author,
-      created: new Date(),
+      created: Date(),
       published: false,
       title: title,
       slug: slug,
@@ -99,19 +105,17 @@ content.post(
     }
     console.dir(formData)
 
-    function validateArticle() {
-      const { error } = validArticle.validate(formData)
-      if (error) {
-        const msg = error.details.map((el) => el.message).join(',')
-        throw new HandleError(msg, 400)
-      } else {
-        next()
-      }
-    }
+    // function validateArticle() {
+    //   const { error } = validArticle.validate(req.body)
+    //   if (error) {
+    //     const msg = error.details.map((el) => el.message).join(',')
+    //     throw new HandleError(msg, 400)
+    //   } else {
+    //     next()
+    //   }
+    // }
 
-    validateArticle()
-
-    dbConnect.collection('post').insertOne(formData, (err, result) => {
+    await dbConnect.collection('post').insertOne(formData, (err, result) => {
       console.log(`Added new post with the following id: ${result.insertedId}`)
     })
     res.redirect('mod')
@@ -143,7 +147,7 @@ content.get(
 
 content.post(
   '/edit/:slug',
-  // validateArticle,
+  validateArticle,
   handleAsync(async (req, res) => {
     const collection = getCollection()
     const query = { slug: req.params.slug }
