@@ -20,15 +20,15 @@ function getCollection() {
   return db.collection('post')
 }
 
-const validateArticle = (req, res, next) => {
-  const { error } = validArticle.validate(req.body)
-  if (error) {
-    const msg = error.details.map((el) => el.message).join(',')
-    throw new HandleError(msg, 400)
-  } else {
-    next()
-  }
-}
+// const validateArticle = (req, res, next) => {
+//   const { error } = validArticle.validate(req.body)
+//   if (error) {
+//     const msg = error.details.map((el) => el.message).join(',')
+//     throw new HandleError(msg, 400)
+//   } else {
+//     next()
+//   }
+// }
 
 // Home page
 content.get('/', (req, res) => {
@@ -65,7 +65,6 @@ content.get('/articles', (req, res) => {
 // New article
 content.post(
   '/new',
-  validateArticle,
   handleAsync(async (req, res, next) => {
     const dbConnect = dbo.getDb()
 
@@ -74,6 +73,7 @@ content.post(
     const image = req.body.image.trim()
     const summary = req.body.summary.trim()
     const text = req.body.text.trim()
+    const category = req.body.category
 
     const slug = title
       .replace(',', '')
@@ -93,15 +93,25 @@ content.post(
       title: title,
       slug: slug,
       image: image,
-      category: req.body.category,
+      category: category,
       summary: summary,
       text: text,
     }
-    // console.dir(formData)
+    console.dir(formData)
 
-    // validateArticle(formData)
+    function validateArticle() {
+      const { error } = validArticle.validate(formData)
+      if (error) {
+        const msg = error.details.map((el) => el.message).join(',')
+        throw new HandleError(msg, 400)
+      } else {
+        next()
+      }
+    }
 
-    await dbConnect.collection('post').insertOne(formData, (err, result) => {
+    validateArticle()
+
+    dbConnect.collection('post').insertOne(formData, (err, result) => {
       console.log(`Added new post with the following id: ${result.insertedId}`)
     })
     res.redirect('mod')
