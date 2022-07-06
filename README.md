@@ -23,3 +23,7 @@
 ## Admin area
 
 - add page to view edit and publish articles
+
+## Test accessability
+
+- rework css where necessary
