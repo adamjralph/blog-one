@@ -105,16 +105,6 @@ content.post(
     }
     console.dir(formData)
 
-    // function validateArticle() {
-    //   const { error } = validArticle.validate(req.body)
-    //   if (error) {
-    //     const msg = error.details.map((el) => el.message).join(',')
-    //     throw new HandleError(msg, 400)
-    //   } else {
-    //     next()
-    //   }
-    // }
-
     await dbConnect.collection('post').insertOne(formData, (err, result) => {
       console.log(`Added new post with the following id: ${result.insertedId}`)
     })
