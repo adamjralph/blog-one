@@ -247,6 +247,8 @@ nav .nav-container {
 
 .logo-triangle {
   width: 100px;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-heading {
