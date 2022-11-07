@@ -135,6 +135,10 @@ h6 {
   border-color: #000;
 }
 
+.btn-moderate {
+  max-width: fit-content;
+}
+
 .btn:hover,
 .btn:focus {
   transition: color 3s ease-in-out;
@@ -314,6 +318,7 @@ p {
 }
 
 /* Home Articles */
+
 #home-articles {
   display: flex;
   align-items: center;
@@ -339,8 +344,18 @@ p {
   max-width: var(--max-width);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
+  gap: 1rem;
   padding: 1rem;
+}
+
+.editor-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-options .btn-moderate {
+  margin-right: 1rem;
 }
 
 .home-articles .articles-container > *:first-child,
